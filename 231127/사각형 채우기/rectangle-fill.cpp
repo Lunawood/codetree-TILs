@@ -7,7 +7,7 @@ int dp[1001];
 void recur(int n) {
     for(int i = 3; i <= n; i++){
         if(dp[i] == 0){
-            dp[i] = dp[i - 1] + dp[i - 2];
+            dp[i] = (dp[i - 1] + dp[i - 2]) % 10007;
         }
     }
 }
