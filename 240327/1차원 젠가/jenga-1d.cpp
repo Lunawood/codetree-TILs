@@ -13,8 +13,8 @@ int main() {
     for(int i = 0; i < 2; i++){
         cin >> idx1 >> idx2;
         n -= (idx2 - idx1 + 1);
-        for(int i = idx1; i <= idx2; i++){
-            arr[i] = arr[i - idx1 + idx2 + 1];
+        for(int i = 0; i < idx2 - idx1 + 1; i++){
+            arr[i + idx1] = arr[i + idx2 + 1];
         }
     }
     cout << n << "\n";
