@@ -27,16 +27,16 @@ int main() {
             if(row_num == arr[i][j])
                 row_cnt++;
             else {
-                row_fin_cnt = max(row_cnt, row_fin_cnt);
                 row_cnt = 1;
             }
                 
             if(col_num == arr[j][i])
                 col_cnt++;
             else {
-                col_fin_cnt = max(col_cnt, col_fin_cnt);
                 col_cnt = 1;
             }
+            row_fin_cnt = max(row_cnt, row_fin_cnt);
+            col_fin_cnt = max(col_cnt, col_fin_cnt);
             row_num = arr[i][j];
             col_num = arr[j][i];
         }
