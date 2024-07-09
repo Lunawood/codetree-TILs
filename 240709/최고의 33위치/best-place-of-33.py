@@ -15,7 +15,6 @@ for i in range(move):
             for l in range(3):
                 if li[k + i][l + j] == 1:
                     cnt += 1
-        if ans < cnt:
-            ans = cnt
+        ans = max(ans, cnt)
 
 print(ans)
