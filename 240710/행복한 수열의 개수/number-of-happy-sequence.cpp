@@ -26,8 +26,12 @@ int main() {
         for(int j = 0; j < n; j++){
             if(row_num == arr[i][j])
                 row_cnt++;
+            else
+                row_cnt = 1;
             if(col_num == arr[j][i])
                 col_cnt++;
+            else
+                col_cnt = 1;
             row_num = arr[i][j];
             col_num = arr[j][i];
         }
