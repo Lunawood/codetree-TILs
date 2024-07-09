@@ -41,9 +41,9 @@ int main() {
             col_num = arr[j][i];
         }
 
-        if(row_cnt >= m)
+        if(row_fin_cnt >= m)
             ans++;
-        if(col_cnt >= m)
+        if(col_fin_cnt >= m)
             ans++;
     }
 
