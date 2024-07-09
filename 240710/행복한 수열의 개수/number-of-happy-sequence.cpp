@@ -18,20 +18,25 @@ int main() {
     }
 
     for(int i = 0; i < n; i++){
-        int row_cnt = 1;
-        int col_cnt = 1;
+        int row_cnt = 1, row_fin_cnt = 1;
+        int col_cnt = 1, col_fin_cnt = 1;
         int row_num = -1;
         int col_num = -1;
 
         for(int j = 0; j < n; j++){
             if(row_num == arr[i][j])
                 row_cnt++;
-            else
+            else {
+                row_fin_cnt = max(row_cnt, row_fin_cnt);
                 row_cnt = 1;
+            }
+                
             if(col_num == arr[j][i])
                 col_cnt++;
-            else
+            else {
+                col_fin_cnt = max(col_cnt, col_fin_cnt);
                 col_cnt = 1;
+            }
             row_num = arr[i][j];
             col_num = arr[j][i];
         }
