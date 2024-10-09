@@ -95,7 +95,7 @@ pair<int, int> machine(int pid, int c, int d, vector<vector<int>> &vec) {
             vec[newR + 1][newC - 1] == 0 &&
             vec[newR + 1][newC - 2] == 0 &&
             vec[newR + 2][newC - 1] == 0) {
-            d = (d - 1) % 4;
+            d = ((d - 1) + 4) % 4;
             newR = newR + 1;
             newC = newC -1;
         }
@@ -134,9 +134,6 @@ pair<int, int> machine(int pid, int c, int d, vector<vector<int>> &vec) {
     }
     else if (d == 3) {
         vec[newR][newC - 1] = -pid;
-    }
-    else {
-        cout << "ERROR" << endl;
     }
 
     return make_pair(newR, newC);
