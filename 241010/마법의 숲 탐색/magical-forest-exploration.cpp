@@ -9,7 +9,7 @@ int R, C, K;
 // 출구 : -1~-1000
 // 정령 : P
 
-void mapInit(vector<vector<int>> &vec) {
+void mapInit(vector<vector<int>>& vec) {
     for (int i = 0; i < R + 3; i++) {
         for (int j = 0; j < C; j++) {
             vec[i][j] = 0;
@@ -17,7 +17,7 @@ void mapInit(vector<vector<int>> &vec) {
     }
 }
 
-int fairy(int row, int col, vector<vector<int>> &vec) {
+int fairy(int row, int col, vector<vector<int>>& vec) {
     queue<pair<int, int>> q;
     vector<vector<bool>> visited(R, vector<bool>(C, false));
     q.emplace(row, col);
@@ -35,7 +35,7 @@ int fairy(int row, int col, vector<vector<int>> &vec) {
         // 아래
         if (
             newR + 1 < R &&
-            (pid == vec[newR + 3 + 1][newC] || (pid < 0 && vec[newR + 3 + 1][newC] > 0) || (pid > 0 && vec[newR + 3 + 1][newC] == -pid)) &&
+            (pid == vec[newR + 3 + 1][newC] || (pid < 0 && vec[newR + 3 + 1][newC] != 0) || (pid > 0 && vec[newR + 3 + 1][newC] == -pid)) &&
             !visited[newR + 1][newC]
             ) {
             q.emplace(newR + 1, newC);
@@ -44,7 +44,7 @@ int fairy(int row, int col, vector<vector<int>> &vec) {
         // 왼쪽
         if (
             newC - 1 > -1 &&
-            (pid == vec[newR + 3][newC - 1] || (pid < 0 && vec[newR + 3][newC - 1] > 0) || (pid > 0 && vec[newR + 3][newC - 1] == -pid)) &&
+            (pid == vec[newR + 3][newC - 1] || (pid < 0 && vec[newR + 3][newC - 1] != 0) || (pid > 0 && vec[newR + 3][newC - 1] == -pid)) &&
             !visited[newR][newC - 1]
             ) {
             q.emplace(newR, newC - 1);
@@ -53,7 +53,7 @@ int fairy(int row, int col, vector<vector<int>> &vec) {
         // 위
         if (
             newR - 1 > -1 &&
-            (pid == vec[newR + 3 - 1][newC] || (pid < 0 && vec[newR + 3 - 1][newC] > 0) || (pid > 0 && vec[newR + 3 - 1][newC] == -pid)) &&
+            (pid == vec[newR + 3 - 1][newC] || (pid < 0 && vec[newR + 3 - 1][newC] != 0) || (pid > 0 && vec[newR + 3 - 1][newC] == -pid)) &&
             !visited[newR - 1][newC]
             ) {
             q.emplace(newR - 1, newC);
@@ -62,7 +62,7 @@ int fairy(int row, int col, vector<vector<int>> &vec) {
         // 왼쪽
         if (
             newC + 1 < C &&
-            (pid == vec[newR + 3][newC + 1] || (pid < 0 && vec[newR + 3][newC + 1] > 0) || (pid > 0 && vec[newR + 3][newC + 1] == -pid)) &&
+            (pid == vec[newR + 3][newC + 1] || (pid < 0 && vec[newR + 3][newC + 1] != 0) || (pid > 0 && vec[newR + 3][newC + 1] == -pid)) &&
             !visited[newR][newC + 1]
             ) {
             q.emplace(newR, newC + 1);
@@ -73,7 +73,7 @@ int fairy(int row, int col, vector<vector<int>> &vec) {
     return result + 1;
 }
 
-pair<int, int> machine(int pid, int c, int d, vector<vector<int>> &vec) {
+pair<int, int> machine(int pid, int c, int d, vector<vector<int>>& vec) {
     int newR = 0;
     int newC = c - 1;
 
@@ -97,7 +97,7 @@ pair<int, int> machine(int pid, int c, int d, vector<vector<int>> &vec) {
             vec[newR + 2][newC - 1] == 0) {
             d = ((d - 1) + 4) % 4;
             newR = newR + 1;
-            newC = newC -1;
+            newC = newC - 1;
         }
         // 오른쪽으로
         else if (
@@ -139,7 +139,7 @@ pair<int, int> machine(int pid, int c, int d, vector<vector<int>> &vec) {
     return make_pair(newR, newC);
 }
 
-int process(int pid, int c, int d, vector<vector<int>> &vec) {
+int process(int pid, int c, int d, vector<vector<int>>& vec) {
     pair<int, int> machinePos;
     machinePos = machine(pid, c, d, vec);
     if (machinePos.first > 3)
@@ -153,7 +153,7 @@ int main() {
 
     // input
     cin >> R >> C >> K;
-    
+
     // 맵을 3만큼 늘림. 시작은 3행부터 숲!
     vector<vector<int>> vec(R + 3, vector<int>(C, 0));
 
